@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Counter from './components/Counter';
-import Dropdown from './components/Dropdown/Dropdown';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import ToDoList from './components/ToDoList';
 import initialToDos from './toDos.json';
 import Container from './components/Container/Container';
-import Forms from './components/Forms/Forms';
 import shortid from 'shortid';
 import TodoEditor from './components/ToDOEditor/TodoEditor';
 import Filter from './components/Filter';
+import Modal from './components/Modal/Modal';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -24,6 +22,29 @@ class App extends Component {
     inputValue: '',
     todos: initialToDos,
     filter: '',
+    showModal: false,
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App did update');
+    if (this.state.todos !== prevState.todos) {
+      console.log('todos field update');
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
+
+  componentDidMount() {
+    console.log('app did mount');
+    const todos = localStorage.getItem('todos');
+    const parsedTodos = JSON.parse(todos);
+
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
   formSubmitHandler = data => {
@@ -78,24 +99,33 @@ class App extends Component {
     );
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('App did update');
-  }
-
-  componentDidMount() {
-    console.log('app did mount');
-  }
-
   render() {
-    const { todos, filter } = this.state;
+    const { todos, filter, showModal } = this.state;
     const completedTodoCount = this.calcCompletedTodos();
 
     const filteredTodos = this.getFilteredTodos();
 
     return (
       <Container>
-        <Forms onSubmit={this.formSubmitHandler} />
+        <button type="button" onClick={this.toggleModal}>
+          Open Modal{' '}
+        </button>
+        {showModal && (
+          <Modal>
+            <h1>Hi</h1>
+            <button type="button" onClick={this.toggleModal}>
+              x
+            </button>
 
+            <p>
+              Summary: Disco Elysium - The Final Cut is the definitive edition
+              of the smash-hit RPG. Pursue your political dreams in new quests,
+              meet and question more of the city's locals, and explore a whole
+              extra area. Full voice-acting, controller support, and expanded
+              language options also included. Get even… Expand
+            </p>
+          </Modal>
+        )}
         <h1>Todo List </h1>
         <TodoEditor onSubmit={this.addTodo} />
         <Filter value={filter} onChange={this.changeFilter} />
@@ -109,8 +139,7 @@ class App extends Component {
           <p>Total amount: {todos.length}</p>
           <p>Total done: {completedTodoCount}</p>
         </div>
-        <Counter initialValue={10} />
-        <Dropdown />
+
         <ColorPicker options={colorPickerOptions} />
       </Container>
     );
