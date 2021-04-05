@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = { hasError: false };
+
+  componentDidCatch(error, info) {
+    // Если метод был вызван значит есть ошибка!
+    // Устанавливаем состояние
+    this.setState({ hasError: true });
+    // Также можно отправить отчет об ошибке вашему аналитическому сервису
+    // logErrorToMyService(error, info);
+  }
+
+  render() {
+    // Если есть ошибка...
+    if (this.state.hasError) {
+      // Рендерим fallback UI
+      return <h1>Something went wrong, please try again later :(</h1>;
+    }
+
+    // Если все ок, рендерим детей
+    return this.props.children;
+  }
 }
 
 export default App;
