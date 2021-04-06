@@ -7,6 +7,9 @@ import shortid from 'shortid';
 import TodoEditor from './components/ToDOEditor/TodoEditor';
 import Filter from './components/Filter';
 import Modal from './components/Modal/Modal';
+import Clock from './components/Clock';
+import Tabs from './components/Tabs';
+import tabs from './tabs.json';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -26,15 +29,13 @@ class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('App did update');
+    // console.log('App did update');
     if (this.state.todos !== prevState.todos) {
-      console.log('todos field update');
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
     }
   }
 
   componentDidMount() {
-    console.log('app did mount');
     const todos = localStorage.getItem('todos');
     const parsedTodos = JSON.parse(todos);
 
@@ -111,7 +112,7 @@ class App extends Component {
           Open Modal{' '}
         </button>
         {showModal && (
-          <Modal>
+          <Modal onClose={this.toggleModal}>
             <h1>Hi</h1>
             <button type="button" onClick={this.toggleModal}>
               x
@@ -126,6 +127,11 @@ class App extends Component {
             </p>
           </Modal>
         )}
+
+        {showModal && <Clock />}
+
+        <Tabs items={tabs} />
+
         <h1>Todo List </h1>
         <TodoEditor onSubmit={this.addTodo} />
         <Filter value={filter} onChange={this.changeFilter} />

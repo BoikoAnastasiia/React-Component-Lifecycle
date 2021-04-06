@@ -8,14 +8,23 @@ const modalRoot = document.querySelector('#modal-root');
 export default class Modal extends Component {
   componentDidMount() {
     console.log('Modal componentDidMount');
+    window.addEventListener('keydown', this.handleKeydowm);
   }
 
   componentWillUnmount() {
     console.log('Modal componentWillUnmount');
+    window.removeEventListener('keydown', this.handleKeydowm);
   }
 
   handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
+      this.props.onClose();
+    }
+  };
+
+  handleKeydowm = e => {
+    console.log(e.code);
+    if (e.code === 'Escape') {
       this.props.onClose();
     }
   };
