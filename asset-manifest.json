@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/React-Component-Lifecycle/static/css/main.c45cf96c.chunk.css",
-    "main.js": "/React-Component-Lifecycle/static/js/main.7907bf0b.chunk.js",
-    "main.js.map": "/React-Component-Lifecycle/static/js/main.7907bf0b.chunk.js.map",
+    "main.css": "/React-Component-Lifecycle/static/css/main.d9815336.chunk.css",
+    "main.js": "/React-Component-Lifecycle/static/js/main.981b6fc3.chunk.js",
+    "main.js.map": "/React-Component-Lifecycle/static/js/main.981b6fc3.chunk.js.map",
     "runtime-main.js": "/React-Component-Lifecycle/static/js/runtime-main.fd1a9cb1.js",
     "runtime-main.js.map": "/React-Component-Lifecycle/static/js/runtime-main.fd1a9cb1.js.map",
     "static/js/2.02c0e16d.chunk.js": "/React-Component-Lifecycle/static/js/2.02c0e16d.chunk.js",
     "static/js/2.02c0e16d.chunk.js.map": "/React-Component-Lifecycle/static/js/2.02c0e16d.chunk.js.map",
     "index.html": "/React-Component-Lifecycle/index.html",
-    "static/css/main.c45cf96c.chunk.css.map": "/React-Component-Lifecycle/static/css/main.c45cf96c.chunk.css.map",
+    "static/css/main.d9815336.chunk.css.map": "/React-Component-Lifecycle/static/css/main.d9815336.chunk.css.map",
     "static/js/2.02c0e16d.chunk.js.LICENSE.txt": "/React-Component-Lifecycle/static/js/2.02c0e16d.chunk.js.LICENSE.txt",
     "static/media/add.b32f3a09.svg": "/React-Component-Lifecycle/static/media/add.b32f3a09.svg",
     "static/media/delete.5575697b.svg": "/React-Component-Lifecycle/static/media/delete.5575697b.svg"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.fd1a9cb1.js",
     "static/js/2.02c0e16d.chunk.js",
-    "static/css/main.c45cf96c.chunk.css",
-    "static/js/main.7907bf0b.chunk.js"
+    "static/css/main.d9815336.chunk.css",
+    "static/js/main.981b6fc3.chunk.js"
   ]
 }
